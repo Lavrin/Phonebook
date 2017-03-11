@@ -18,6 +18,7 @@ void EnteredField(char *EnterName, char *EnterNumber){
 
 int comstr(char *str1, char *str2){
     int done = 0;
+    printf("strlen1: %d - %s, strlen2: %d - %s\n", strlen(str1), str1,  strlen(str2), str2);
     if (strlen(str1)==strlen(str2)){
 	for(i=0; i<strlen(str1); i++){
 	    if(str1[i] == str2[i]){
@@ -66,7 +67,7 @@ int main(){
 	}
 	if(comstr(command, list) == 1){
 	    for(counter = 10, i=0; i<10 && phonebook[i].flag==1; i++, counter--){
-		printf("Имя: %s, Номер: %s\n", phonebook[i].name, phonebook[i].number);
+		printf("Имя: %s, Номер: %s %d\n", phonebook[i].name, phonebook[i].number, i);
 	    }
 	    if(counter>0) printf("Осталось %d свободных полей\n", counter);
 	    if(counter == 0) printf("свободных полей не осталось\n");
@@ -75,12 +76,13 @@ int main(){
 	    printf("Введите имя искомого контакта\n");
 	    scanf("%s", command);
 	    for(i=0; i<10; i++){
-		printf("Name: %s, command: %s, comstr: %d\n", phonebook[i].name, command, comstr(command, phonebook[i].name));
+		printf("name: %s, command: %s, comstr: %d\n", phonebook[i].name, command, comstr(command, phonebook[i].name));
 		if(comstr(phonebook[i].name, command) == 1){
 		    printf("Номер телефона: %s\n", phonebook[i].number);
 		}
 	    }
 	}
+	for(i=0; i<10; i++) printf("name: %s; number: %s\n", phonebook[i].name, phonebook[i].number);
     }
     return 0;
 }
